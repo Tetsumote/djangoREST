@@ -66,5 +66,5 @@ class Competition(models.Model):
         # Order by distance in descending order 
         ordering = ('-distance_in_feet',)
 
-    def __str__(self): 
+    def __str__(self):  
         return "Competition # {0} pilot: {1}".format(self.pk,self.pilot) 
