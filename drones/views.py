@@ -9,7 +9,10 @@ from drones.models import Competition
 from drones.serializers import DroneCategorySerializer 
 from drones.serializers import DroneSerializer 
 from drones.serializers import PilotSerializer 
-from drones.serializers import PilotCompetitionSerializer 
+from drones.serializers import PilotCompetitionSerializer
+
+from rest_framework.permissions import IsAuthenticated 
+from rest_framework.authentication import TokenAuthentication
 
 from rest_framework import permissions 
 from drones import custompermission 
@@ -95,12 +98,24 @@ class PilotList(generics.ListCreateAPIView):
         'name', 
         'races_count' 
         )
+    authentication_classes = (
+        TokenAuthentication,
+        )
+    permission_classes = (
+        IsAuthenticated,
+        )
  
  
 class PilotDetail(generics.RetrieveUpdateDestroyAPIView): 
     queryset = Pilot.objects.all() 
     serializer_class = PilotSerializer 
-    name = 'pilot-detail' 
+    name = 'pilot-detail'
+    authentication_classes = (
+        TokenAuthentication,
+        )
+    permission_classes = (
+        IsAuthenticated,
+        )
  
 
 class CompetitionFilter(django_filters.FilterSet): 
