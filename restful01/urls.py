@@ -19,7 +19,8 @@ from django.conf.urls import url, include
  
 urlpatterns = [ 
     path('admin/', admin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls')),
-    url(r'^', include('toys.urls')), 
-    url(r'^', include('drones.urls')),
+    url(r'^v1/', include(('drones.urls','v1'), namespace='v1')), 
+    url(r'^v1/api-auth/', include(('rest_framework.urls','rest_framework_v1'), namespace='rest_framework_v1')), 
+    url(r'^v2/', include(('drones.v2.urls','v2'), namespace='v2')), 
+    url(r'^v2/api-auth/', include(('rest_framework.urls','rest_framework_v2'), namespace='rest_framework_v2')), 
 ] 
